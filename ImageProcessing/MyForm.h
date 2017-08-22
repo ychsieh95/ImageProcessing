@@ -1946,7 +1946,7 @@ namespace ImageProcessing {
 	}
 
 	private: System::Void button44_Click(System::Object^  sender, System::EventArgs^  e) {
-		pictureBox44->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture41FilePath))), 0.1, 0.1);
+		pictureBox44->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture41FilePath))), 10, 10);
 	}
 
 	private: System::Drawing::Bitmap^ GaussianNoise(Bitmap^ bmpSrc, float std_dev, bool showChart) {
@@ -2120,7 +2120,12 @@ namespace ImageProcessing {
 		for (int i = 0; i < (pixelsCount); i++) { pRandMap[i] = false; }
 
 		// 欲雜訊化之 Pixel 數
-		long noisePixelsCount = pixelsCount * (saltPercent + pepperPercent);
+		if (saltPercent + pepper > 100)
+		{
+			saltPercent = 50;
+			pepper = 50;
+		}
+		long noisePixelsCount = pixelsCount * (saltPercent / 100 + pepperPercent / 100);
 		// 已雜訊化 Pixel 數
 		long count = 0;
 		while (count < noisePixelsCount) {
@@ -2163,85 +2168,11 @@ namespace ImageProcessing {
 	}
 
 	private: System::Void button51_Click(System::Object^  sender, System::EventArgs^  e) {
-		Bitmap^ image = ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture51FilePath)));
-		Rectangle rect = Rectangle(0, 0, image->Width, image->Height);
-		int byteNumber_Width = image->Width * 3;
-		Imaging::BitmapData^ imageData = image->LockBits(rect, System::Drawing::Imaging::ImageLockMode::ReadWrite, image->PixelFormat);
-		IntPtr ptr = imageData->Scan0;
-		int bytesOfSkip = imageData->Stride - byteNumber_Width;
-		Byte* p = (Byte *)((Void *)ptr);
-
-		/* Make Impulse Noise 30% */
-		Byte salt = 255;
-		Byte pepper = 0;
-		long pixelsCount = image->Height * image->Width;
-		bool *pRandMap = new bool[pixelsCount];
-		for (int i = 0; i < (pixelsCount); i++) { pRandMap[i] = false; }
-
-		long noisePixelsCount = pixelsCount * (0.15f + 0.15f);
-		long count = 0;
-		while (count < noisePixelsCount) {
-			int randHeight = rand() % image->Height;
-			int randWidth = rand() % image->Width;
-
-			int randPixelIndex = randHeight * image->Width + randWidth;
-			if (pRandMap[randPixelIndex] == false) {
-				int offset = (randHeight * image->Width * 3) + (randWidth * 3);
-				if (count < (noisePixelsCount / 2)) {
-					for (int i = 0; i < 3; i++) { p[offset + i] = salt; }
-				}
-				else {
-					for (int i = 0; i < 3; i++) { p[offset + i] = pepper; }
-				}
-				pRandMap[randPixelIndex] = true;
-				count++;
-			}
-		}
-		delete[] pRandMap;
-		image->UnlockBits(imageData);
-
-		pictureBox51->Image = image;
+		pictureBox51->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture51FilePath))), 15, 15);
 	}
 
 	private: System::Void button52_Click(System::Object^  sender, System::EventArgs^  e) {
-		Bitmap^ image = ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture51FilePath)));
-		Rectangle rect = Rectangle(0, 0, image->Width, image->Height);
-		int byteNumber_Width = image->Width * 3;
-		Imaging::BitmapData^ imageData = image->LockBits(rect, System::Drawing::Imaging::ImageLockMode::ReadWrite, image->PixelFormat);
-		IntPtr ptr = imageData->Scan0;
-		int bytesOfSkip = imageData->Stride - byteNumber_Width;
-		Byte* p = (Byte *)((Void *)ptr);
-
-		/* Make Impulse Noise 30% */
-		Byte salt = 255;
-		Byte pepper = 0;
-		long pixelsCount = image->Height * image->Width;
-		bool *pRandMap = new bool[pixelsCount];
-		for (int i = 0; i < (pixelsCount); i++) { pRandMap[i] = false; }
-
-		long noisePixelsCount = pixelsCount * (0.05f + 0.05f);
-		long count = 0;
-		while (count < noisePixelsCount) {
-			int randHeight = rand() % image->Height;
-			int randWidth = rand() % image->Width;
-
-			int randPixelIndex = randHeight * image->Width + randWidth;
-			if (pRandMap[randPixelIndex] == false) {
-				int offset = (randHeight * image->Width * 3) + (randWidth * 3);
-				if (count < (noisePixelsCount / 2)) {
-					for (int i = 0; i < 3; i++) { p[offset + i] = salt; }
-				}
-				else {
-					for (int i = 0; i < 3; i++) { p[offset + i] = pepper; }
-				}
-				pRandMap[randPixelIndex] = true;
-				count++;
-			}
-		}
-		delete[] pRandMap;
-		image->UnlockBits(imageData);
-
-		pictureBox51->Image = image;
+		pictureBox51->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture51FilePath))), 5, 5);
 	}
 
 	private: System::Void button53_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -2326,7 +2257,7 @@ namespace ImageProcessing {
 				}
 
 				p2 = (Byte*)((Void*)ptr2);
-				p2 += (((int)y) *(imageData1->Stride)) + ((int)x * 3);
+				p2 += (((int)y) *(imageData2->Stride)) + ((int)x * 3);
 
 				filterPixel = 0;
 				for (int i = 0; i < mask * mask; i++) { filterPixel += _array[i]; }
@@ -2383,7 +2314,7 @@ namespace ImageProcessing {
 				}
 
 				p2 = (Byte*)((Void*)ptr2);
-				p2 += (((int)y) *(imageData1->Stride)) + ((int)x * 3);
+				p2 += (((int)y) *(imageData2->Stride)) + ((int)x * 3);
 
 				holdPixel = 0;
 				for (int i = 0; i < mask * mask; i++) {
@@ -2443,7 +2374,7 @@ namespace ImageProcessing {
 				}
 
 				p2 = (Byte*)((Void*)ptr2);
-				p2 += (((int)y) *(imageData1->Stride)) + ((int)x * 3);
+				p2 += (((int)y) *(imageData2->Stride)) + ((int)x * 3);
 
 				holdPixel = 0;
 				for (int i = 0; i < 9; i++) {
