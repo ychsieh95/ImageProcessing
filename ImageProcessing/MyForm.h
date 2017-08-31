@@ -4,6 +4,9 @@ namespace ImageProcessing {
 
 	#include <stdio.h>
 	#include <stdlib.h>
+
+	#define PI 3.14159265358979323846
+
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -45,6 +48,7 @@ namespace ImageProcessing {
 	private: System::String^ picture51FilePath = "";
 	private: System::String^ picture61FilePath = "";
 	private: System::String^ picture71FilePath = "";
+	private: System::String^ picture81FilePath = "";
 
 	private: System::Windows::Forms::TabControl^  tabControl1;
 	private: System::Windows::Forms::TabPage^  tabPage0;
@@ -134,6 +138,14 @@ namespace ImageProcessing {
 	private: System::Windows::Forms::Button^  button71;
 	private: System::Windows::Forms::ContextMenuStrip^  contextMenuStrip1;
 	private: System::Windows::Forms::ToolStripMenuItem^  saveToolStripMenuItem;
+private: System::Windows::Forms::TabPage^  tabPage8;
+private: System::Windows::Forms::PictureBox^  pictureBox81;
+private: System::Windows::Forms::PictureBox^  pictureBox82;
+private: System::Windows::Forms::Button^  button82;
+
+
+private: System::Windows::Forms::Button^  button81;
+
 	private: System::ComponentModel::IContainer^  components;
 
 	private:
@@ -236,6 +248,11 @@ namespace ImageProcessing {
 			this->button71 = (gcnew System::Windows::Forms::Button());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox71 = (gcnew System::Windows::Forms::PictureBox());
+			this->tabPage8 = (gcnew System::Windows::Forms::TabPage());
+			this->pictureBox82 = (gcnew System::Windows::Forms::PictureBox());
+			this->button82 = (gcnew System::Windows::Forms::Button());
+			this->button81 = (gcnew System::Windows::Forms::Button());
+			this->pictureBox81 = (gcnew System::Windows::Forms::PictureBox());
 			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->saveToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->tabControl1->SuspendLayout();
@@ -272,6 +289,9 @@ namespace ImageProcessing {
 			this->tabPage7->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox72))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox71))->BeginInit();
+			this->tabPage8->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox82))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox81))->BeginInit();
 			this->contextMenuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -285,6 +305,7 @@ namespace ImageProcessing {
 			this->tabControl1->Controls->Add(this->tabPage5);
 			this->tabControl1->Controls->Add(this->tabPage6);
 			this->tabControl1->Controls->Add(this->tabPage7);
+			this->tabControl1->Controls->Add(this->tabPage8);
 			this->tabControl1->Location = System::Drawing::Point(13, 13);
 			this->tabControl1->Margin = System::Windows::Forms::Padding(4);
 			this->tabControl1->Name = L"tabControl1";
@@ -348,7 +369,7 @@ namespace ImageProcessing {
 			this->pictureBox01->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox01->TabIndex = 0;
 			this->pictureBox01->TabStop = false;
-			this->pictureBox01->Click += gcnew System::EventHandler(this, &MyForm::pictureBox01_Click);
+			this->pictureBox01->DoubleClick += gcnew System::EventHandler(this, &MyForm::pictureBox01_DoubleClick);
 			// 
 			// tabPage1
 			// 
@@ -429,7 +450,7 @@ namespace ImageProcessing {
 			this->pictureBox12->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox12->TabIndex = 2;
 			this->pictureBox12->TabStop = false;
-			this->pictureBox12->Click += gcnew System::EventHandler(this, &MyForm::pictureBox12_Click);
+			this->pictureBox12->DoubleClick += gcnew System::EventHandler(this, &MyForm::pictureBox12_DoubleClick);
 			// 
 			// button11
 			// 
@@ -451,7 +472,7 @@ namespace ImageProcessing {
 			this->pictureBox11->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox11->TabIndex = 0;
 			this->pictureBox11->TabStop = false;
-			this->pictureBox11->Click += gcnew System::EventHandler(this, &MyForm::pictureBox11_Click);
+			this->pictureBox11->DoubleClick += gcnew System::EventHandler(this, &MyForm::pictureBox11_DoubleClick);
 			// 
 			// tabPage2
 			// 
@@ -527,7 +548,7 @@ namespace ImageProcessing {
 			this->pictureBox21->Size = System::Drawing::Size(512, 512);
 			this->pictureBox21->TabIndex = 0;
 			this->pictureBox21->TabStop = false;
-			this->pictureBox21->Click += gcnew System::EventHandler(this, &MyForm::pictureBox21_Click);
+			this->pictureBox21->Click += gcnew System::EventHandler(this, &MyForm::pictureBox21_DoubleClick);
 			// 
 			// panel21
 			// 
@@ -683,7 +704,7 @@ namespace ImageProcessing {
 			this->pictureBox31->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
 			this->pictureBox31->TabIndex = 0;
 			this->pictureBox31->TabStop = false;
-			this->pictureBox31->Click += gcnew System::EventHandler(this, &MyForm::pictureBox31_Click);
+			this->pictureBox31->DoubleClick += gcnew System::EventHandler(this, &MyForm::pictureBox31_DoubleClick);
 			// 
 			// tabPage4
 			// 
@@ -772,7 +793,7 @@ namespace ImageProcessing {
 			this->pictureBox41->Size = System::Drawing::Size(512, 512);
 			this->pictureBox41->TabIndex = 0;
 			this->pictureBox41->TabStop = false;
-			this->pictureBox41->Click += gcnew System::EventHandler(this, &MyForm::pictureBox41_Click);
+			this->pictureBox41->DoubleClick += gcnew System::EventHandler(this, &MyForm::pictureBox41_DoubleClick);
 			// 
 			// button44
 			// 
@@ -1103,7 +1124,7 @@ namespace ImageProcessing {
 			this->pictureBox61->Size = System::Drawing::Size(512, 512);
 			this->pictureBox61->TabIndex = 1;
 			this->pictureBox61->TabStop = false;
-			this->pictureBox61->Click += gcnew System::EventHandler(this, &MyForm::pictureBox61_Click);
+			this->pictureBox61->DoubleClick += gcnew System::EventHandler(this, &MyForm::pictureBox61_DoubleClick);
 			// 
 			// tabPage7
 			// 
@@ -1196,19 +1217,69 @@ namespace ImageProcessing {
 			this->pictureBox71->Size = System::Drawing::Size(512, 512);
 			this->pictureBox71->TabIndex = 2;
 			this->pictureBox71->TabStop = false;
-			this->pictureBox71->Click += gcnew System::EventHandler(this, &MyForm::pictureBox71_Click);
+			this->pictureBox71->DoubleClick += gcnew System::EventHandler(this, &MyForm::pictureBox71_DoubleClick);
+			// 
+			// tabPage8
+			// 
+			this->tabPage8->Controls->Add(this->pictureBox82);
+			this->tabPage8->Controls->Add(this->button82);
+			this->tabPage8->Controls->Add(this->button81);
+			this->tabPage8->Controls->Add(this->pictureBox81);
+			this->tabPage8->Location = System::Drawing::Point(4, 26);
+			this->tabPage8->Name = L"tabPage8";
+			this->tabPage8->Size = System::Drawing::Size(1582, 557);
+			this->tabPage8->TabIndex = 8;
+			this->tabPage8->Text = L"Project 8";
+			this->tabPage8->UseVisualStyleBackColor = true;
+			// 
+			// pictureBox82
+			// 
+			this->pictureBox82->Location = System::Drawing::Point(682, 6);
+			this->pictureBox82->Name = L"pictureBox82";
+			this->pictureBox82->Size = System::Drawing::Size(512, 512);
+			this->pictureBox82->TabIndex = 6;
+			this->pictureBox82->TabStop = false;
+			// 
+			// button82
+			// 
+			this->button82->Location = System::Drawing::Point(524, 491);
+			this->button82->Name = L"button82";
+			this->button82->Size = System::Drawing::Size(152, 27);
+			this->button82->TabIndex = 1;
+			this->button82->Text = L"General Wavelet Form";
+			this->button82->UseVisualStyleBackColor = true;
+			this->button82->Click += gcnew System::EventHandler(this, &MyForm::button82_Click);
+			// 
+			// button81
+			// 
+			this->button81->Location = System::Drawing::Point(524, 458);
+			this->button81->Name = L"button81";
+			this->button81->Size = System::Drawing::Size(152, 27);
+			this->button81->TabIndex = 0;
+			this->button81->Text = L"DCT";
+			this->button81->UseVisualStyleBackColor = true;
+			this->button81->Click += gcnew System::EventHandler(this, &MyForm::button81_Click);
+			// 
+			// pictureBox81
+			// 
+			this->pictureBox81->Location = System::Drawing::Point(6, 6);
+			this->pictureBox81->Name = L"pictureBox81";
+			this->pictureBox81->Size = System::Drawing::Size(512, 512);
+			this->pictureBox81->TabIndex = 3;
+			this->pictureBox81->TabStop = false;
+			this->pictureBox81->DoubleClick += gcnew System::EventHandler(this, &MyForm::pictureBox81_DoubleClick);
 			// 
 			// contextMenuStrip1
 			// 
 			this->contextMenuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->saveToolStripMenuItem });
 			this->contextMenuStrip1->Name = L"contextMenuStrip1";
-			this->contextMenuStrip1->Size = System::Drawing::Size(153, 48);
+			this->contextMenuStrip1->Size = System::Drawing::Size(102, 26);
 			// 
 			// saveToolStripMenuItem
 			// 
 			this->saveToolStripMenuItem->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"saveToolStripMenuItem.Image")));
 			this->saveToolStripMenuItem->Name = L"saveToolStripMenuItem";
-			this->saveToolStripMenuItem->Size = System::Drawing::Size(152, 22);
+			this->saveToolStripMenuItem->Size = System::Drawing::Size(101, 22);
 			this->saveToolStripMenuItem->Text = L"Save";
 			this->saveToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::saveToolStripMenuItem_Click);
 			// 
@@ -1264,6 +1335,9 @@ namespace ImageProcessing {
 			this->tabPage7->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox72))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox71))->EndInit();
+			this->tabPage8->ResumeLayout(false);
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox82))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox81))->EndInit();
 			this->contextMenuStrip1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
@@ -1290,7 +1364,7 @@ namespace ImageProcessing {
 		String^ path = SavePicture();
 		if (!String::IsNullOrEmpty(path)) {
 			Bitmap^ bitmap = ConvertBmpTo24Bit(safe_cast<Bitmap^>(((PictureBox^)contextMenuStrip1->SourceControl)->Image));
-			bitmap->Save(path);
+			bitmap->Save(path, System::Drawing::Imaging::ImageFormat::Bmp);
 		}
 	}
 
@@ -1301,7 +1375,7 @@ namespace ImageProcessing {
 		SelectPicture(picture01FilePath, pictureBox01, false);
 	}
 
-	private: System::Void pictureBox01_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void pictureBox01_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 		button01->PerformClick();
 	}
 
@@ -1331,7 +1405,7 @@ namespace ImageProcessing {
 		SelectPicture(picture11FilePath, pictureBox11, false);
 	}
 
-	private: System::Void pictureBox11_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void pictureBox11_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 		button11->PerformClick();
 	}
 
@@ -1339,7 +1413,7 @@ namespace ImageProcessing {
 		SelectPicture(picture12FilePath, pictureBox12, false);
 	}
 
-	private: System::Void pictureBox12_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void pictureBox12_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 		button12->PerformClick();
 	}
 
@@ -1460,7 +1534,7 @@ namespace ImageProcessing {
 		SelectPicture(picture21FilePath, pictureBox21, false);
 	}
 
-	private: System::Void pictureBox21_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void pictureBox21_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 		button21->PerformClick();
 	}
 
@@ -1717,7 +1791,7 @@ namespace ImageProcessing {
 		// MAX
 		double max = Math::Pow((double)2, (double)8) - 1;
 		// 返回 PSNR 值
-		return (20 * Math::Log10(max / Math::Pow(mse, 0.5)));
+		return (20 * Math::Log10(max / Math::Sqrt(mse)));
 	}
 
 #pragma endregion
@@ -1728,7 +1802,7 @@ namespace ImageProcessing {
 		SelectPicture(picture31FilePath, pictureBox31, true);
 	}
 
-	private: System::Void pictureBox31_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void pictureBox31_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 		button31->PerformClick();
 	}
 
@@ -1933,7 +2007,7 @@ namespace ImageProcessing {
 		SelectPicture(picture41FilePath, pictureBox41, true);
 	}
 
-	private: System::Void pictureBox41_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void pictureBox41_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 		button41->PerformClick();
 	}
 
@@ -1942,11 +2016,11 @@ namespace ImageProcessing {
 	}
 
 	private: System::Void button43_Click(System::Object^  sender, System::EventArgs^  e) {
-		pictureBox43->Image = UniformNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture41FilePath))), 500, true);
+		pictureBox43->Image = UniformNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture41FilePath))), 500, true, true);
 	}
 
 	private: System::Void button44_Click(System::Object^  sender, System::EventArgs^  e) {
-		pictureBox44->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture41FilePath))), 10, 10);
+		pictureBox44->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture41FilePath))), 10, 10, true);
 	}
 
 	private: System::Drawing::Bitmap^ GaussianNoise(Bitmap^ bmpSrc, float std_dev, bool showChart) {
@@ -2038,7 +2112,7 @@ namespace ImageProcessing {
 		fmChart->Show();
 	}
 
-	private: System::Drawing::Bitmap^ UniformNoise(Bitmap^ bmpSrc, int nNoiseProbability /* 雜訊出現機率 */, bool showChart) {
+	private: System::Drawing::Bitmap^ UniformNoise(Bitmap^ bmpSrc, int nNoiseProbability /* 雜訊出現機率 */, bool showChart, bool onBordering /* 是否要撒邊緣 */) {
 		Bitmap^ image = ConvertBmpTo24Bit(gcnew Bitmap(bmpSrc));
 		Rectangle rect = Rectangle(0, 0, image->Width, image->Height);
 		int byteNumber_Width = image->Width * 3;
@@ -2064,10 +2138,15 @@ namespace ImageProcessing {
 		// 雜訊最小值
 		int nRangeMin = 50;
 		while (noisePixelsCount > 0) {
-			// 產生雜訊的圖像高值
-			int randHeight = rand() % image->Height;
 			// 產生雜訊的圖像寬值
 			int randWidth = rand() % image->Width;
+			// 產生雜訊的圖像高值
+			int randHeight = rand() % image->Height;
+
+			// 判斷是否要撒在邊緣
+			if (onBordering && (randWidth == 0 || randWidth == (image->Width - 1) || randHeight == 0 || randHeight == (image->Height - 1))) {
+				continue;
+			}
 
 			int randPixelIndex = randHeight * image->Width + randWidth;
 			if (pRandMap[randPixelIndex] == false) {
@@ -2099,7 +2178,7 @@ namespace ImageProcessing {
 		return image;
 	}
 
-	private: System::Drawing::Bitmap^ ImpulseNoise(Bitmap^ bmpSrc, float saltPercent, float pepperPercent) {
+	private: System::Drawing::Bitmap^ ImpulseNoise(Bitmap^ bmpSrc, float saltPercent, float pepperPercent, bool onBordering /* 是否要撒邊緣 */) {
 		Bitmap^ image = ConvertBmpTo24Bit(gcnew Bitmap(bmpSrc));
 		Rectangle rect = Rectangle(0, 0, image->Width, image->Height);
 		int byteNumber_Width = image->Width * 3;
@@ -2129,10 +2208,15 @@ namespace ImageProcessing {
 		// 已雜訊化 Pixel 數
 		long count = 0;
 		while (count < noisePixelsCount) {
-			// 產生雜訊的圖像高值
-			int randHeight = rand() % image->Height;
 			// 產生雜訊的圖像寬值
 			int randWidth = rand() % image->Width;
+			// 產生雜訊的圖像高值
+			int randHeight = rand() % image->Height;
+
+			// 判斷是否要撒在邊緣
+			if (!onBordering && (randWidth == 0 || randWidth == (image->Width - 1) || randHeight == 0 || randHeight == (image->Height - 1))) {
+				continue;
+			}
 
 			int RandPixelIndex = randHeight * image->Width + randWidth;
 			if (pRandMap[RandPixelIndex] == false) {
@@ -2168,11 +2252,11 @@ namespace ImageProcessing {
 	}
 
 	private: System::Void button51_Click(System::Object^  sender, System::EventArgs^  e) {
-		pictureBox51->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture51FilePath))), 15, 15);
+		pictureBox51->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture51FilePath))), 15, 15, true);
 	}
 
 	private: System::Void button52_Click(System::Object^  sender, System::EventArgs^  e) {
-		pictureBox51->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture51FilePath))), 5, 5);
+		pictureBox51->Image = ImpulseNoise(ColorToGray(safe_cast<Bitmap^>(Image::FromFile(picture51FilePath))), 5, 5, true);
 	}
 
 	private: System::Void button53_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -2424,7 +2508,7 @@ namespace ImageProcessing {
 
 #pragma region Project 6
 
-	private: System::Void pictureBox61_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void pictureBox61_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 		SelectPicture(picture61FilePath, pictureBox61, true);
 	}
 	private: System::Void button61_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -2567,7 +2651,7 @@ namespace ImageProcessing {
 
 #pragma region Project 7
 
-	private: System::Void pictureBox71_Click(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void pictureBox71_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
 		SelectPicture(picture71FilePath, pictureBox71, true);
 	}
 
@@ -2589,7 +2673,7 @@ namespace ImageProcessing {
 
 	private: System::Drawing::Bitmap^ PrewittFilter(Bitmap^ bmpSrc, int style) {
 		Bitmap^ image1 = ConvertBmpTo24Bit(gcnew Bitmap(bmpSrc));
-		Bitmap^ image2 = gcnew Bitmap((int)((image1->Width)), (int)((image1->Height)), System::Drawing::Imaging::PixelFormat::Format24bppRgb);
+		Bitmap^ image2 = gcnew Bitmap((int)((image1->Width)), (int)((image1->Height)), image1->PixelFormat);
 		Rectangle rect1 = Rectangle(0, 0, image1->Width, image1->Height);
 		Rectangle rect2 = Rectangle(0, 0, image2->Width, image2->Height);
 		int byteNumber_Width1 = image1->Width * 3;
@@ -2636,7 +2720,7 @@ namespace ImageProcessing {
 
 	private: System::Drawing::Bitmap^ SobelOperator(Bitmap^ bmpSrc, int style) {
 		Bitmap^ image1 = ConvertBmpTo24Bit(gcnew Bitmap(bmpSrc));
-		Bitmap^ image2 = gcnew Bitmap((int)((image1->Width)), (int)((image1->Height)), System::Drawing::Imaging::PixelFormat::Format24bppRgb);
+		Bitmap^ image2 = gcnew Bitmap((int)((image1->Width)), (int)((image1->Height)), image1->PixelFormat);
 		Rectangle rect1 = Rectangle(0, 0, image1->Width, image1->Height);
 		Rectangle rect2 = Rectangle(0, 0, image2->Width, image2->Height);
 		int byteNumber_Width1 = image1->Width * 3;
@@ -2683,5 +2767,167 @@ namespace ImageProcessing {
 
 #pragma endregion
 
+	private: System::Void pictureBox81_DoubleClick(System::Object^  sender, System::EventArgs^  e) {
+		SelectPicture(picture81FilePath, pictureBox81, true);
+	}
+
+	private: System::Void button81_Click(System::Object^  sender, System::EventArgs^  e) {
+		DemoDCT();
+	}
+
+	private: System::Void button82_Click(System::Object^  sender, System::EventArgs^  e) {
+		pictureBox82->Image = GeneralWaveletForm(ColorToGray(safe_cast<Bitmap^>(pictureBox81->Image)), 2);
+	}
+
+	private: System::Void DemoDCT() {
+		int imageSrc[8][8] = {
+			{ 139, 148, 150, 149, 155, 164, 165, 168 },
+			{  98, 115, 130, 135, 143, 146, 142, 147 },
+			{  89, 110, 125, 128, 129, 121, 104, 106 },
+			{  96, 116, 128, 132, 134, 132, 113, 109 },
+			{ 111, 125, 127, 131, 137, 137, 120, 110 },
+			{ 122, 126, 126, 131, 133, 131, 126, 112 },
+			{ 133, 134, 136, 138, 140, 144, 141, 139 },
+			{ 138, 139, 139, 139, 140, 146, 148, 147 }
+			/*{ 79, 75, 79, 82, 82, 86, 94, 94 },
+			{ 76, 78, 76, 82, 83, 86, 85, 94 },
+			{ 72, 75, 67, 78, 80, 78, 74, 82 },
+			{ 74, 76, 75, 75, 86, 80, 81, 79 },
+			{ 73, 70, 75, 67, 78, 78, 79, 85 },
+			{ 69, 63, 68, 69, 75, 78, 82, 80 },
+			{ 76, 76, 71, 71, 67, 79, 80, 83 },
+			{ 72, 77, 78, 69, 75, 75, 78, 78 }*/
+		};
+		int imageTar[8][8];
+
+		for (int v = 0; v < 8; v++) {
+			for (int u = 0; u < 8; u++) {
+
+				double sum = 0;
+				for (int y = 0; y < 8; y++) {
+					for (int x = 0; x < 8; x++) {
+						sum += (imageSrc[y][x] - 128) * Math::Cos((x + 0.5) * PI * u / 8) * Math::Cos((y + 0.5) * PI * v / 8);
+					}
+				}
+
+				if (v == 0 && u == 0) {
+					sum /= 8;
+				}
+				else {
+					if (v == 0) {
+						sum *= Math::Sqrt(1.0 / 8);
+					}
+					else {
+						sum *= Math::Sqrt(2.0 / 8);
+					}
+
+					if (u == 0) {
+						sum *= Math::Sqrt(1.0 / 8);
+					}
+					else {
+						sum *= Math::Sqrt(2.0 / 8);
+					}
+				}
+				sum = Math::Ceiling(sum);
+				imageTar[u][v] = sum;
+			}
+		}
+
+		String^ out = "";
+		for (int y = 0; y < 8; y++) {
+			for (int x = 0; x < 8; x++) {
+				out += imageTar[x][y].ToString() + ", ";
+			}
+			out += "\n";
+		}
+		MessageBox::Show(out);
+	}
+
+	private: System::Drawing::Bitmap^ GeneralWaveletForm(Bitmap^ bmpSrc, int passes)
+	{
+		Bitmap^ image1 = ConvertBmpTo24Bit(gcnew Bitmap(bmpSrc));
+		Rectangle rect1 = Rectangle(0, 0, image1->Width, image1->Height);
+		int byteNumber_Width1 = image1->Width * 3;
+		Imaging::BitmapData^ imageData1 = image1->LockBits(rect1, System::Drawing::Imaging::ImageLockMode::ReadWrite, image1->PixelFormat);
+		IntPtr ptr1 = imageData1->Scan0;
+		int bytesOfSkip1 = imageData1->Stride - byteNumber_Width1;
+		Byte* p1 = (Byte *)((Void *)ptr1);
+
+		// Create two-dimensional array
+		int **pixelMap1 = (int **)malloc(image1->Height * sizeof(void *) + image1->Height * image1->Width * sizeof(int *));
+		int *pixelMapX1 = (int *)(pixelMap1 + image1->Height);
+		for (int y = 0; y != image1->Height; ++y, pixelMapX1 += image1->Width) {
+			pixelMap1[y] = pixelMapX1;
+		}
+		int **pixelMap2 = (int **)malloc(image1->Height * sizeof(void *) + image1->Height * image1->Width * sizeof(int *));
+		int *pixelMapX2 = (int *)(pixelMap2 + image1->Height);
+		for (int y = 0; y != image1->Height; ++y, pixelMapX2 += image1->Width) {
+			pixelMap2[y] = pixelMapX2;
+		}
+
+		// Copy the image pixel to pixelMap
+		for (int y = 0; y < image1->Height; y++) {
+			for (int x = 0; x < image1->Width; x++) {
+				// Copy pixel
+				pixelMap1[y][x] = p1[0];
+
+				// Clear image1
+				p1[0] = 0; p1[1] = 0; p1[2] = 0;
+
+				p1 += 3;
+			}
+			p1 += bytesOfSkip1;
+		}
+
+		// Compute
+		for (int i = 1; i <= passes; i++) {
+			// passesValue
+			int passesValS0 = Math::Pow(2, i);
+			int passesValS1 = Math::Pow(2, i - 1);
+
+			// row
+			p1 = (Byte *)((Void *)ptr1);
+			for (int y = 0; y < image1->Height / passesValS1; y++) {
+				for (int x = 0; x < image1->Width / passesValS0; x++) {
+					float pointA = pixelMap1[y][x * 2];
+					float pointB = pixelMap1[y][x * 2 + 1];
+					int addAverage = Math::Ceiling((pointA + pointB) / 2);
+					int subAverage = Math::Ceiling((pointA - pointB) / 2);
+
+					pixelMap2[y][x] = addAverage;
+					pixelMap2[y][x + image1->Width / passesValS0] = subAverage + 128;
+				}
+			}
+
+			// column
+			p1 = (Byte *)((Void *)ptr1);
+			for (int y = 0; y < image1->Height / passesValS0; y++) {
+				for (int x = 0; x < image1->Width / passesValS1; x++) {
+					int pointA = pixelMap2[y * 2][x];
+					int pointB = pixelMap2[y * 2 + 1][x];
+					Byte addAverage = Math::Ceiling((pointA + pointB) / 2);
+					Byte subAverage = Math::Ceiling((pointA - pointB) / 2);
+
+					pixelMap1[y][x] = addAverage;
+					pixelMap1[y + image1->Width / passesValS0][x] = subAverage + 128;
+				}
+			}
+		}
+
+		// pixelMap to image2
+		p1 = (Byte *)((Void *)ptr1);
+		for (int y = 0; y < image1->Height; y++) {
+			for (int x = 0; x < image1->Width; x++) {
+				for (int i = 0; i < 3; i++) {
+					p1[i] = pixelMap1[y][x];
+				}
+				p1 += 3;
+			}
+			p1 += bytesOfSkip1;
+		}
+
+		image1->UnlockBits(imageData1);
+		return image1;
+	}
 };
 }

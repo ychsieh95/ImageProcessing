@@ -175,6 +175,7 @@
     <None Include="Assets\PdfFiles\Classwork05.pdf" />
     <None Include="Assets\PdfFiles\Classwork06.pdf" />
     <None Include="Assets\PdfFiles\Classwork07.pdf" />
+    <None Include="Assets\PdfFiles\Classwork08.pdf" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ImageProcessing.rc" />
